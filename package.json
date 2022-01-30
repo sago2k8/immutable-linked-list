@@ -1,0 +1,27 @@
+{
+  "name": "immutable-linked-list",
+  "version": "0.0.1",
+  "description": "Immutable linked list safely typed",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest --no-cache",
+    "lint:types": "tsc --noEmit -p ."
+  },
+  "keywords": [
+    "typescript",
+    "immutable",
+    "linked",
+    "lists"
+  ],
+  "author": "sago2k8@gmail.com",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/jest": "^27.4.0",
+    "prettier": "2.5.1",
+    "typescript": "^4.5.5"
+  },
+  "dependencies": {
+    "jest": "^27.4.7",
+    "ts-jest": "^27.1.3"
+  }
+}
