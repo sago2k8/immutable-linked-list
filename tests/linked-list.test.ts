@@ -68,96 +68,35 @@ describe('ImmutableLinkedList unit tests', () => {
       const onlyEvens = list.filter((element) => element % 2 === 0 );
       expect([...onlyEvens]).toEqual([2,4]);
     });
+  });
+
+  describe('includes', () => {
+    it('should find the element and return true if found', () => {
+      const initialValues = [1,2,3]
+      const list = new ImmutableLinkedList<number>(initialValues);
+
+      expect(list.includes(1)).toEqual(true);
+      expect(list.includes(12)).toEqual(false);
+    });
+  });
+
+  describe('toString', () => {
+    it('should return a string', () => {
+      const list = new ImmutableLinkedList([1,2,3]);
+      const stringifiedList = list.toString();
+      expect(typeof stringifiedList).toBe('string');
+      expect(stringifiedList).toEqual('1,2,3')
+    });
+
+     it('should return a string array like format', () => {
+      const arrayNumbers = [1,2,3];
+      const arrayString = ['foo', 'bar', 'echo'];
+      const listNumber = new ImmutableLinkedList(arrayNumbers)
+      const listString = new ImmutableLinkedList(arrayString)
+      
+      expect(listNumber.toString()).toEqual(arrayNumbers.toString());
+      expect(listString.toString()).toEqual(arrayString.toString());
+    });
+    
   })
-
-
-  // xit('extract elements from the beginning of the list with shift', () => {
-  //   const list = new ImmutableLinkedList<number>()
-  //   list.push(10)
-  //   list.push(20)
-  //   expect(list.shift()).toBe(10)
-  //   expect(list.shift()).toBe(20)
-  // })
-
-  // xit('add/extract elements from the beginning of the list with unshift/shift', () => {
-  //   const list = new ImmutableLinkedList<number>()
-  //   list.unshift(10)
-  //   list.unshift(20)
-  //   expect(list.shift()).toBe(20)
-  //   expect(list.shift()).toBe(10)
-  // })
-
-  // xit('unshift/pop', () => {
-  //   const list = new ImmutableLinkedList<number>()
-  //   list.unshift(10)
-  //   list.unshift(20)
-  //   expect(list.pop()).toBe(10)
-  //   expect(list.pop()).toBe(20)
-  // })
-
-  // xit('example', () => {
-  //   const list = new ImmutableLinkedList<number>()
-  //   list.push(10)
-  //   list.push(20)
-  //   expect(list.pop()).toBe(20)
-  //   list.push(30)
-  //   expect(list.shift()).toBe(10)
-  //   list.unshift(40)
-  //   list.push(50)
-  //   expect(list.shift()).toBe(40)
-  //   expect(list.pop()).toBe(50)
-  //   expect(list.shift()).toBe(30)
-  // })
-
-  // xit('can count its elements', () => {
-  //   const list = new ImmutableLinkedList<number>()
-  //   expect(list.count()).toBe(0)
-  //   list.push(10)
-  //   expect(list.count()).toBe(1)
-  //   list.push(20)
-  //   expect(list.count()).toBe(2)
-  // })
-
-  // xit('sets head/tail after popping last element', () => {
-  //   const list = new ImmutableLinkedList<number>()
-  //   list.push(10)
-  //   list.pop()
-  //   list.unshift(20)
-  //   expect(list.count()).toBe(1)
-  //   expect(list.pop()).toBe(20)
-  // })
-
-  // xit('sets head/tail after shifting last element', () => {
-  //   const list = new ImmutableLinkedList<number>()
-  //   list.unshift(10)
-  //   list.shift()
-  //   list.push(20)
-  //   expect(list.count()).toBe(1)
-  //   expect(list.shift()).toBe(20)
-  // })
-
-  // xit('deletes the element with the specified value from the list', () => {
-  //   const list = new ImmutableLinkedList<number>()
-  //   list.push(10)
-  //   list.push(20)
-  //   list.push(30)
-  //   list.delete(20)
-  //   expect(list.count()).toBe(2)
-  //   expect(list.pop()).toBe(30)
-  //   expect(list.shift()).toBe(10)
-  // })
-
-  // xit('deletes the only element', () => {
-  //   const list = new ImmutableLinkedList<number>()
-  //   list.push(10)
-  //   list.delete(10)
-  //   expect(list.count()).toBe(0)
-  // })
-
-  // xit('delete does not modify the list if the element is not found', () => {
-  //   const list = new ImmutableLinkedList<number>()
-  //   list.push(10)
-  //   list.delete(20)
-  //   expect(list.count()).toBe(1)
-  // })
 })

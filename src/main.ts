@@ -63,6 +63,23 @@ export class ImmutableLinkedList<T> {
     return newList;
   }
 
+  public includes(element: T): boolean {
+    let isElementPresent: boolean = false;
+
+    for(let current of this) {
+      if(current === element) {
+        isElementPresent = true;
+        break;
+      }
+    }
+
+    return isElementPresent;
+  }
+
+  public toString(): string {
+    return [...this].toString();
+  }
+
   public getSize(): number {
     return this.length;
   }
