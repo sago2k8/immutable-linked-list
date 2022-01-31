@@ -1,5 +1,3 @@
-
-
 class Element<T> {
   constructor(public value: T, public next: Element<T> | null = null) {}
 }
@@ -8,11 +6,11 @@ export class ImmutableLinkedList<T> {
   private head: Element<T> | null = null;
   private length: number = 0;
 
-  constructor(initialValues:T[] = []) {
-    initialValues.forEach((element) => (this.add(element)));
+  constructor(initialValues: T[] = []) {
+    initialValues.forEach((element) => this.add(element));
   }
 
-  *[Symbol.iterator]() {
+  *[Symbol.iterator](): Iterator<T> {
     for (let node = this.head; node; node = node.next) {
       yield node.value;
     }
@@ -21,12 +19,12 @@ export class ImmutableLinkedList<T> {
   public add(element: T): void {
     const node = new Element<T>(element);
     let current: Element<T> | null = null;
-    if(this.head === null) {
+    if (this.head === null) {
       this.head = node;
     } else {
       current = this.head;
-      
-      while(current.next) {
+
+      while (current.next) {
         current = current.next;
       }
       current.next = node;
@@ -36,8 +34,8 @@ export class ImmutableLinkedList<T> {
 
   public remove(element: T): ImmutableLinkedList<T> {
     const newList = new ImmutableLinkedList<T>();
-    for(let current of this) {
-      if(current !== element) {
+    for (let current of this) {
+      if (current !== element) {
         newList.add(current);
       }
     }
@@ -47,16 +45,16 @@ export class ImmutableLinkedList<T> {
 
   public map<TMap>(callback: (element: T) => TMap): Array<TMap> {
     const returnArray: TMap[] = [];
-    for(let current of this) {
+    for (let current of this) {
       returnArray.push(callback(current));
     }
     return returnArray;
   }
 
-  public filter(callback: (element: T)=> boolean): ImmutableLinkedList<T> {
+  public filter(callback: (element: T) => boolean): ImmutableLinkedList<T> {
     const newList = new ImmutableLinkedList<T>();
-    for(let current of this) {
-      if(callback(current) === true) {
+    for (let current of this) {
+      if (callback(current) === true) {
         newList.add(current);
       }
     }
@@ -66,8 +64,8 @@ export class ImmutableLinkedList<T> {
   public includes(element: T): boolean {
     let isElementPresent: boolean = false;
 
-    for(let current of this) {
-      if(current === element) {
+    for (let current of this) {
+      if (current === element) {
         isElementPresent = true;
         break;
       }
@@ -84,4 +82,3 @@ export class ImmutableLinkedList<T> {
     return this.length;
   }
 }
-

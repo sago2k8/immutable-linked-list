@@ -9,10 +9,7 @@ module.exports = {
     '**/?(*.)+(spec|test).[jt]s?(x)',
   ],
   coverageDirectory: 'coverage',
-  collectCoverageFrom: [
-    'src/**/*.{ts,tsx,js,jsx}',
-    '!src/**/*.d.ts',
-  ],
+  collectCoverageFrom: ['src/**/*.{ts,tsx,js,jsx}', '!src/**/*.d.ts'],
   testPathIgnorePatterns: [
     '/(?:production_)?node_modules/',
     '.d.ts$',
@@ -20,6 +17,5 @@ module.exports = {
     '<rootDir>/test/helpers',
     '__mocks__',
   ],
-  modulePathIgnorePatterns: ['./dist/']
-}
-
+  modulePathIgnorePatterns: ['./dist/'],
+};
