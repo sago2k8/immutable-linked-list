@@ -9,8 +9,9 @@ describe('ImmutableLinkedList unit tests', () => {
 
     it('should update the size when adding', () => {
       const list = new ImmutableLinkedList<number>();
-      list.add(100);
-      expect(list.getSize()).toEqual(1);
+      const updatedList = list.add(100);
+      expect(list.getSize()).toEqual(0);
+      expect(updatedList.getSize()).toEqual(1);
     });
 
     it('size should be updated when initializing with an arbitrary array', () => {
@@ -21,21 +22,17 @@ describe('ImmutableLinkedList unit tests', () => {
 
   describe('add', () => {
     it('should add elements to the list', () => {
-      const list = new ImmutableLinkedList<number>();
-      list.add(10);
-      list.add(20);
-      const listAsArray = [...list];
+      const list = new ImmutableLinkedList<number>([1, 2, 10]);
+      const updatedList = list.add(20);
+      const listAsArray = [...updatedList];
       expect(listAsArray.pop()).toBe(20);
       expect(listAsArray.pop()).toBe(10);
     });
   });
 
-  describe('delete', () => {
+  describe('remove', () => {
     it('should remove elements from the ImmutableList and return a new ImmutableList (unique)', () => {
-      const list = new ImmutableLinkedList<number>();
-      list.add(10);
-      list.add(20);
-      list.add(12);
+      const list = new ImmutableLinkedList<number>([10, 15, 20]);
       const elementToRemove = 20;
       const newAfterDeletionList = list.remove(elementToRemove);
 
@@ -46,13 +43,8 @@ describe('ImmutableLinkedList unit tests', () => {
     });
 
     it('should remove all elements if more than one coincidence', () => {
-      const list = new ImmutableLinkedList<number>();
-      list.add(10);
-      list.add(20);
-      list.add(20);
-
+      const list = new ImmutableLinkedList<number>([10, 20, 20]);
       const newAfterDeletionList = list.remove(20);
-
       expect(list.getSize()).toBe(3);
       expect(newAfterDeletionList.getSize()).toBe(1);
     });

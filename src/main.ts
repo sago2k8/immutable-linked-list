@@ -7,7 +7,7 @@ export class ImmutableLinkedList<T> {
   private length: number = 0;
 
   constructor(initialValues: T[] = []) {
-    initialValues.forEach((element) => this.add(element));
+    initialValues.forEach((element) => this.push(element));
   }
 
   *[Symbol.iterator](): Iterator<T> {
@@ -16,7 +16,7 @@ export class ImmutableLinkedList<T> {
     }
   }
 
-  public add(element: T): void {
+  private push(element: T): void {
     const node = new Element<T>(element);
     let current: Element<T> | null = null;
     if (this.head === null) {
@@ -32,11 +32,15 @@ export class ImmutableLinkedList<T> {
     this.length++;
   }
 
+  public add(element: T): ImmutableLinkedList<T> {
+    return new ImmutableLinkedList<T>([...this, element]);
+  }
+
   public remove(element: T): ImmutableLinkedList<T> {
     const newList = new ImmutableLinkedList<T>();
     for (let current of this) {
       if (current !== element) {
-        newList.add(current);
+        newList.push(current);
       }
     }
 
@@ -55,7 +59,7 @@ export class ImmutableLinkedList<T> {
     const newList = new ImmutableLinkedList<T>();
     for (let current of this) {
       if (callback(current) === true) {
-        newList.add(current);
+        newList.push(current);
       }
     }
     return newList;
